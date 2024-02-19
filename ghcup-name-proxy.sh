@@ -2,10 +2,12 @@
 
 progname=$(basename "$0")
 
-contains() {
-    [[ $1 =~ (^|[[:space:]])$2($|[[:space:]]) ]] && exit(0) || exit(1)
-}
+acceptable_proxy_array=("ghc" "runhaskell" "runghc" "ghci" "haddock" "stack" "cabal" "haskell-language-server-wrapper")
 
-contains ("ghc" "runhaskell" "runghc" "ghci" "haddock" "stack" "cabal" "haskell-language-server-wrapper") || exit
 
-ghcup run -- "$progname" $@
+_value="\<${progname}\>"
+
+if [[ ${acceptable_proxy_array[@]} =~ ${_value}]]
+then
+    ghcup run -- "$progname" $@
+fi 
