@@ -12,7 +12,7 @@ conflicts=("ghc" "stack" "cabal-install" "haskell-language-server" "ghcup-hs-bin
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/haskell/ghcup-hs/archive/refs/tags/v${pkgver}.tar.gz"
         "ghcup-name-proxy.sh")
 sha256sums=('9de3f367f298e9efecf9e9c2d50b828cec3af8cfd391e3b235057822b75d8fad'
-            'a942b4293d192bae5bdbc0b133d43a8dd4fa678dfaab44109a103b2932cf7b70')
+            'ea10c877feb9f2d5f48bd5fa69d35537db66e18029650414b567d755029ac6d2')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"

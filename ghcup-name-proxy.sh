@@ -7,7 +7,7 @@ acceptable_proxy_array=("ghc" "runhaskell" "runghc" "ghci" "haddock" "stack" "ca
 
 _value="\<${progname}\>"
 
-if [[ ${acceptable_proxy_array[@]} =~ ${_value}]]
+if [[ ${acceptable_proxy_array[@]} =~ ${_value} ]]
 then
     ghcup run -- "$progname" $@
 fi 
