@@ -9,5 +9,7 @@ _value="\<${progname}\>"
 
 if [[ ${acceptable_proxy_array[@]} =~ ${_value} ]]
 then
-    "${HOME}/.ghcup/bin/${progname}"
+    "${HOME}/.ghcup/bin/${progname}" $@
+else
+    echo "ghcup-name-proxy can neither be called directly nor called with an unknown proxy name."
 fi 
