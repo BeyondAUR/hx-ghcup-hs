@@ -34,15 +34,18 @@ package() {
   mkdir -m755 -p "${pkgdir}/usr/share/licenses/${pkgname}"
   install -D -m644 "LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 
-  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/ghc"
-  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/runhaskell"
-  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/runghc"
-  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/ghci"
-  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/haddock"
-  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/stack"
   ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/cabal"
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/ghc"
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/ghci"
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/ghc-pkg"
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/haddock"
   ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/haskell-language-server-wrapper"
-  
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/hp2ps"
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/hpc"
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/hsc2hs"
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/runghc"
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/runhaskell"
+  ln -s "/usr/bin/ghcup-name-proxy.sh" "${pkgdir}/usr/bin/stack"
 
 
   _install_completion_script bash bash-completion/completions/ghcup
