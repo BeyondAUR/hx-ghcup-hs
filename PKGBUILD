@@ -1,34 +1,34 @@
 # Maintainer: Evan Greenup <evan_greenup@protonmail.com>
 pkgname=ghcup-hs
-pkgver=0.1.20.0
+pkgver=0.1.22.0
 pkgrel=1
 license=("LGPL-3.0-only")
 arch=('x86_64')
 url="https://github.com/haskell/ghcup-hs"
-depends=(curl gcc gmp make)
-makedepends=(stack)
+depends=(curl gcc gmp make ncurses)
+makedepends=(stack cabal-install)
 provides=("ghc" "stack" "cabal-install" "haskell-language-server")
 conflicts=("ghc" "stack" "cabal-install" "haskell-language-server" "ghcup-hs-bin")
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/haskell/ghcup-hs/archive/refs/tags/v${pkgver}.tar.gz"
         "ghcup-name-proxy.sh")
-sha256sums=('9de3f367f298e9efecf9e9c2d50b828cec3af8cfd391e3b235057822b75d8fad'
+sha256sums=('73e1644731ebe9b4782c5dc080ce2b2c3022449c92bcec9cda15fc06300568df'
             '135f9514f0f932d663478c8dd57e7c45e48287db44e662c6f06c4100f6a0cfc5')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
-  stack build ghcup:exe:ghcup
+  cabal v2-build --with-compiler=$(stack path --compiler-exe)
 }
 
 check() {
   cd "${srcdir}/${pkgname}-${pkgver}"
-  stack test
+  cabal v2-test --with-compiler=$(stack path --compiler-exe)
 }
 
 package() {
   cd "${srcdir}/${pkgname}-${pkgver}"
   mkdir -m755 -p "${pkgdir}/usr/bin/"
-  install -m755 "$(stack path --local-install-root)/bin/ghcup" "${pkgdir}/usr/bin/ghcup"
+  install -m755 "$(cabal list-bin --with-compiler=$(stack path --compiler-exe) ghcup)" "${pkgdir}/usr/bin/ghcup"
   chmod 755 "${pkgdir}/usr/bin/ghcup"
   mkdir -m755 -p "${pkgdir}/usr/share/ghcup/script"
   install -m755 "${srcdir}/ghcup-name-proxy.sh" "${pkgdir}/usr/share/ghcup/script/ghcup-name-proxy.sh"
