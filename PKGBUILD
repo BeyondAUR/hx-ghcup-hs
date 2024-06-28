@@ -1,5 +1,5 @@
 # Maintainer: Evan Greenup <evan_greenup@protonmail.com>
-pkgname=ghcup-hs
+pkgname=hx-ghcup-hs
 pkgver=0.1.22.0
 pkgrel=1
 license=("LGPL-3.0-only")
