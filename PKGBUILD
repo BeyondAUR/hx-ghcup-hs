@@ -1,5 +1,6 @@
 # Maintainer: Evan Greenup <evan_greenup@protonmail.com>
-pkgname=hx-ghcup-hs
+_name=ghcup-hs
+pkgname=hx-${_name}
 pkgver=0.1.22.0
 pkgrel=1
 license=("LGPL-3.0-only")
@@ -9,24 +10,25 @@ depends=(curl gcc gmp make ncurses)
 makedepends=(stack cabal-install)
 provides=("ghc" "stack" "cabal-install" "haskell-language-server")
 conflicts=("ghc" "stack" "cabal-install" "haskell-language-server" "ghcup-hs-bin")
+replaces=("ghcup-hs")
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/haskell/ghcup-hs/archive/refs/tags/v${pkgver}.tar.gz"
         "ghcup-name-proxy.sh")
 sha256sums=('73e1644731ebe9b4782c5dc080ce2b2c3022449c92bcec9cda15fc06300568df'
             '135f9514f0f932d663478c8dd57e7c45e48287db44e662c6f06c4100f6a0cfc5')
 
 build() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${_name}-${pkgver}"
 
   cabal v2-build --with-compiler=$(stack path --compiler-exe)
 }
 
 check() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${_name}-${pkgver}"
   cabal v2-test --with-compiler=$(stack path --compiler-exe)
 }
 
 package() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${_name}-${pkgver}"
   mkdir -m755 -p "${pkgdir}/usr/bin/"
   install -m755 "$(cabal list-bin --with-compiler=$(stack path --compiler-exe) ghcup)" "${pkgdir}/usr/bin/ghcup"
   chmod 755 "${pkgdir}/usr/bin/ghcup"
