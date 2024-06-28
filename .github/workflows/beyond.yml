@@ -10,4 +10,4 @@ jobs:
       - name: pkgbuild
         uses: BeyondAUR-Aux/beyondaur-pkgbuild-action@master
       - name: add to repo
-        uses: BeyondAUR-Aux/beyondaur-upload-arch-packages-action@master
+        uses: BeyondAUR-Aux/beyondaur-upload-arch-packages-action@main
