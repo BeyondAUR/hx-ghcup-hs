@@ -24,7 +24,7 @@ build() {
 
 check() {
   cd "${srcdir}/${_name}-${pkgver}"
-  cabal v2-test --with-compiler=$(stack path --compiler-exe)
+  cabal v2-test --with-compiler=$(stack path --compiler-exe) --enable-tests
 }
 
 package() {

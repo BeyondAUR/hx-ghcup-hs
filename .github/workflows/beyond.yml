@@ -1,0 +1,13 @@
+on:
+  push:
+    branches: [ $default-brnach ]
+
+jobs:
+  combo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: pkgbuild
+        uses: BeyondAUR-Aux/beyondaur-pkgbuild-action@master
+      - name: add to repo
+        uses: BeyondAUR-Aux/beyondaur-upload-arch-packages-action@master
