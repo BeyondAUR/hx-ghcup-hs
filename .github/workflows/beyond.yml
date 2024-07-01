@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: pkgbuild
-        uses: BeyondAUR-Aux/beyondaur-pkgbuild-action@v2.0.0
+        uses: BeyondAUR-Aux/beyondaur-pkgbuild-haskell-action@v2.0.0
