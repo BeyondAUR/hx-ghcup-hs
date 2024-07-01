@@ -14,7 +14,7 @@ replaces=("ghcup-hs")
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/haskell/ghcup-hs/archive/refs/tags/v${pkgver}.tar.gz"
         "ghcup-name-proxy.sh")
 sha256sums=('73e1644731ebe9b4782c5dc080ce2b2c3022449c92bcec9cda15fc06300568df'
-            '135f9514f0f932d663478c8dd57e7c45e48287db44e662c6f06c4100f6a0cfc5')
+            '60910443105d0679d6c1dc0583a010662e095c095349088e484f83686c002407')
 
 build() {
   cd "${srcdir}/${_name}-${pkgver}"
