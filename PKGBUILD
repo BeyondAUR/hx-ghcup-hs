@@ -16,6 +16,10 @@ source=("${pkgname}-${pkgver}.tar.gz::https://github.com/haskell/ghcup-hs/archiv
 sha256sums=('73e1644731ebe9b4782c5dc080ce2b2c3022449c92bcec9cda15fc06300568df'
             '60910443105d0679d6c1dc0583a010662e095c095349088e484f83686c002407')
 
+prepare() {
+  cabal v2-update
+}
+
 build() {
   cd "${srcdir}/${_name}-${pkgver}"
 
