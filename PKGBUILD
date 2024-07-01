@@ -2,7 +2,7 @@
 _name=ghcup-hs
 pkgname=hx-${_name}
 pkgver=0.1.22.0
-pkgrel=1
+pkgrel=2
 license=("LGPL-3.0-only")
 arch=('x86_64')
 url="https://github.com/haskell/ghcup-hs"
