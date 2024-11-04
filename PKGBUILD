@@ -15,26 +15,21 @@ source=("${pkgname}-${pkgver}.tar.gz::https://github.com/haskell/ghcup-hs/archiv
         "ghcup_entry_proxy.py")
 sha256sums=('89d158023f634f079ac6a306bb87d208445384a725d47b432f6858c8876cbef6'
             '3834519e8f0e43cb280cd1f722bea6e52fbfd4bc0a75c277a7c80ae4779ae8e9')
-
+_resolver="lts-21.25"
 prepare() {
-  cabal v2-update
+  stack update --resolver=$_resolver
 }
 
 build() {
   cd "${srcdir}/${_name}-${pkgver}"
 
-  cabal v2-build --with-compiler=$(stack path --compiler-exe)
-}
-
-check() {
-  cd "${srcdir}/${_name}-${pkgver}"
-  cabal v2-test --with-compiler=$(stack path --compiler-exe) --enable-tests
+  stack build --resolver=$_resolver ghcup:exe:ghcup
 }
 
 package() {
   cd "${srcdir}/${_name}-${pkgver}"
   mkdir -m755 -p "${pkgdir}/usr/bin/"
-  install -m755 "$(cabal list-bin --with-compiler=$(stack path --compiler-exe) ghcup)" "${pkgdir}/usr/bin/ghcup"
+  install -m755 "$(stack path --resolver=${_resolver} --local-install-root)/bin/ghcup" "${pkgdir}/usr/bin/ghcup"
   chmod 755 "${pkgdir}/usr/bin/ghcup"
   mkdir -m755 -p "${pkgdir}/usr/share/ghcup/script"
   install -m755 "${srcdir}/ghcup_entry_proxy.py" "${pkgdir}/usr/share/ghcup/script/ghcup_entry_proxy.py"
