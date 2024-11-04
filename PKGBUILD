@@ -14,7 +14,7 @@ replaces=("ghcup-hs")
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/haskell/ghcup-hs/archive/refs/tags/v${pkgver}.tar.gz"
         "ghcup_entry_proxy.py")
 sha256sums=('89d158023f634f079ac6a306bb87d208445384a725d47b432f6858c8876cbef6'
-            '9f978bc34c964bacbc93711ea045e8e9d2456d357cbd4b7ba0e05e0f3c4232ff')
+            '3834519e8f0e43cb280cd1f722bea6e52fbfd4bc0a75c277a7c80ae4779ae8e9')
 
 prepare() {
   cabal v2-update
