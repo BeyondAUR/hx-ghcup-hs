@@ -2,6 +2,7 @@
 
 import pathlib
 import sys
+import os
 
 import subprocess
 
@@ -27,6 +28,8 @@ def parse_args() -> tuple[str, list[str]]:
     return prog_filename.name, remaining_args
 
 
+GHC_INSTALL_SH_FILE_URL = "https://raw.githubusercontent.com/haskell/ghcup-hs/master/scripts/hooks/stack/ghc-install.sh"
+
 def launch():
     prog_name, remaining_args = parse_args()
 
@@ -35,17 +38,25 @@ def launch():
             pathlib.Path("~").expanduser().joinpath(".ghcup", "bin", prog_name)
         )
         if not target_exec_path.is_file():
+            pkg_name = CMD_TO_PKG_TABLE[prog_name]
             subprocess.run(
                 [
                     "ghcup",
                     "install",
-                    CMD_TO_PKG_TABLE[prog_name],
+                    pkg_name,
                     "--set",
                     "recommended",
                 ],
                 shell=False,
                 check=True,
             )
+            if pkg_name == "stack":
+                ghc_install_sh_filename = pathlib.Path("~").expanduser().joinpath(".stack", "hooks", "ghc-install.sh")
+                ghc_install_sh_filename.parent.mkdir(exist_ok=True, parents=True)
+                subprocess.run(["curl", GHC_INSTALL_SH_FILE_URL, "-o", ghc_install_sh_filename], shell=False, check=True)
+                subprocess.run(["chmod", "u+x", ghc_install_sh_filename])
+                subprocess.run(["stack", "config", "set", "system-ghc", "false", "--global"])
+                
         subprocess.run([target_exec_path, *remaining_args], shell=False, check=True)
 
 

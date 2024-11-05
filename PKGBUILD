@@ -2,7 +2,7 @@
 _name=ghcup-hs
 pkgname=hx-${_name}
 pkgver=0.1.30.0
-pkgrel=4
+pkgrel=5
 license=("LGPL-3.0-only")
 arch=('x86_64')
 url="https://github.com/haskell/ghcup-hs"
@@ -14,7 +14,7 @@ replaces=("ghcup-hs")
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/haskell/ghcup-hs/archive/refs/tags/v${pkgver}.tar.gz"
         "ghcup_entry_proxy.py")
 sha256sums=('89d158023f634f079ac6a306bb87d208445384a725d47b432f6858c8876cbef6'
-            '3834519e8f0e43cb280cd1f722bea6e52fbfd4bc0a75c277a7c80ae4779ae8e9')
+            '9e440ce518a46d9d1b42617dd45fd8fc557e66a64fd49929694fdf7336a78263')
 _resolver="lts-21.25"
 prepare() {
   stack update --resolver=$_resolver
