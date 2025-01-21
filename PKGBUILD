@@ -1,8 +1,8 @@
 # Maintainer: Evan Greenup <evan_greenup@protonmail.com>
 _name=ghcup-hs
 pkgname=hx-${_name}
-pkgver=0.1.30.0
-pkgrel=5
+pkgver=0.1.40.0
+pkgrel=1
 license=("LGPL-3.0-only")
 arch=('x86_64')
 url="https://github.com/haskell/ghcup-hs"
@@ -13,9 +13,9 @@ conflicts=("ghc" "stack" "cabal-install" "haskell-language-server" "ghcup-hs-bin
 replaces=("ghcup-hs")
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/haskell/ghcup-hs/archive/refs/tags/v${pkgver}.tar.gz"
         "ghcup_entry_proxy.py")
-sha256sums=('89d158023f634f079ac6a306bb87d208445384a725d47b432f6858c8876cbef6'
+sha256sums=('80c4c1152ebc35372b987ffa5b46fedc4e940eaf581e6ab11d93d0892bd16fe4'
             '9e440ce518a46d9d1b42617dd45fd8fc557e66a64fd49929694fdf7336a78263')
-_resolver="lts-21.25"
+_resolver="lts-23.1"
 prepare() {
   stack update --resolver=$_resolver
 }
